@@ -1,0 +1,1381 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AutoJanded Car Nation</title>
+    <script src="https://cdn.tailwindcss.com">
+    
+    </script>
+    <style>
+      #mobile-menu {
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  transform: translateY(-10px);
+  opacity: 0;
+}
+
+#mobile-menu.active {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.btn-primary {
+      background-color: #007BFF; /* A nice shade of blue */
+      color: white; /* White text for contrast */
+      padding: 12px 24px; /* Proper padding for a comfortable click area */
+      text-align: center; /* Center the text */
+      text-decoration: none; /* Remove underline */
+      display: inline-block; /* Make it behave like a button */
+      border-radius: 25px; /* Rounded edges */
+      font-size: 16px; /* Readable font size */
+      font-weight: 500; /* Medium font weight */
+      border: none; /* Remove default border */
+      cursor: pointer; /* Pointer cursor on hover */
+      transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transitions */
+      width: 100%; /* Full width */
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    }
+
+    /* Hover effect */
+    .btn-primary:hover {
+      background-color: #0056b3; /* Darker blue on hover */
+      transform: translateY(-2px); /* Slight lift effect */
+      box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15); /* Enhanced shadow on hover */
+    }
+
+    /* Active effect (when clicked) */
+    .btn-primary:active {
+      background-color: #004080; /* Even darker blue */
+      transform: translateY(0); /* Reset lift effect */
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Reset shadow */
+    }
+
+    /* Container for the button */
+    .mt-auto {
+      margin-top: auto; /* Push to the bottom if in a flex container */
+    }
+
+    .pt-8 {
+      padding-top: 2rem; /* Add some spacing above the button */
+    }
+
+    .testimonials-container {
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      overflow-x: auto;
+    }
+
+    .testimonials-container .grid {
+      display: inline-flex;
+      width: max-content;
+    }
+
+    .testimonials-container .grid > div {
+      scroll-snap-align: start;
+      flex: 0 0 auto;
+      width: 80vw;
+      margin-right: 1rem;
+    }
+
+    @media (min-width: 768px) {
+      .testimonials-container {
+        overflow-x: visible;
+      }
+
+      .testimonials-container .grid {
+        display: grid;
+        width: 100%;
+      }
+
+      .testimonials-container .grid > div {
+        width: auto;
+        margin-right: 0;
+      }
+    }
+    </style>
+  </head>
+  <body class="bg-gray-100 font-sans">
+    <nav class="fixed top-0 left-0 right-0 z-50 py-4 bg-white shadow-md transition-all duration-300">
+      <div class="container mx-auto flex items-center justify-between px-6">
+        <!-- Logo and Branding -->
+        <a href="#hero" class="flex items-center">
+          <img
+            src="src/logo.jpg"
+            alt="AutoJanded Car Nation Logo"
+            class="h-12 mr-3"
+          />
+          <div class="hidden sm:block">
+            <h2 class="text-xl font-bold tracking-tight leading-tight">
+              <span class="text-blue-600">AUTO</span
+              ><span class="text-black">JANDED</span>
+            </h2>
+            <span class="text-gray-500 text-sm tracking-widest"
+              >CAR NATION</span
+            >
+          </div>
+        </a>
+    
+        <!-- Desktop Navigation -->
+        <ul class="hidden md:flex gap-6 text-gray-700">
+          <li><a href="#hero" class="hover:text-blue-600">Home</a></li>
+          <li><a href="#services" class="hover:text-blue-600">Services</a></li>
+          <li><a href="#about" class="hover:text-blue-600">About</a></li>
+          <li>
+            <a href="#testimonials" class="hover:text-blue-600">Testimonials</a>
+          </li>
+          <li><a href="#contact" class="hover:text-blue-600">Contact</a></li>
+        </ul>
+    
+        <!-- Phone Number (Desktop) -->
+        <a
+          href="tel:08108061205"
+          class="hidden md:flex items-center gap-2 text-blue-600 font-medium"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="w-5 h-5"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path
+              d="M22 16.92v3a2 2 0 0 1-2.18 2c-5.5-1.5-10-6-11.5-11.5a2 2 0 0 1 2-2.18h3a2 2 0 0 1 2 1.72c.23 1 .5 2.1.7 2.81a2 2 0 0 1-.45 2.11L9 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.71.2 1.81.47 2.81.7a2 2 0 0 1 1.72 2z"
+            />
+          </svg>
+          <span>08108061205</span>
+        </a>
+    
+        <!-- Mobile Hamburger Icon -->
+        <button id="mobile-menu-button" class="md:hidden text-gray-700 focus:outline-none">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="w-6 h-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16m-7 6h7"
+            />
+          </svg>
+        </button>
+      </div>
+    
+      <!-- Mobile Navigation (Hidden by Default) -->
+      <div id="mobile-menu" class="md:hidden hidden bg-white shadow-lg">
+        <ul class="flex flex-col gap-4 p-6 text-gray-700">
+          <li><a href="#hero" class="hover:text-blue-600">Home</a></li>
+          <li><a href="#services" class="hover:text-blue-600">Services</a></li>
+          <li><a href="#about" class="hover:text-blue-600">About</a></li>
+          <li>
+            <a href="#testimonials" class="hover:text-blue-600">Testimonials</a>
+          </li>
+          <li><a href="#contact" class="hover:text-blue-600">Contact</a></li>
+          <li>
+            <a
+              href="tel:08108061205"
+              class="flex items-center gap-2 text-blue-600 font-medium"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="w-5 h-5"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path
+                  d="M22 16.92v3a2 2 0 0 1-2.18 2c-5.5-1.5-10-6-11.5-11.5a2 2 0 0 1 2-2.18h3a2 2 0 0 1 2 1.72c.23 1 .5 2.1.7 2.81a2 2 0 0 1-.45 2.11L9 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.71.2 1.81.47 2.81.7a2 2 0 0 1 1.72 2z"
+                />
+              </svg>
+              <span>08108061205</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    
+    
+    <script>
+      const mobileMenuButton = document.getElementById('mobile-menu-button');
+      const mobileMenu = document.getElementById('mobile-menu');
+    
+      mobileMenuButton.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+      });
+
+      mobileMenuButton.addEventListener('click', () => {
+  mobileMenu.classList.toggle('active');
+});
+
+
+    document.addEventListener('DOMContentLoaded', function() {
+      const container = document.querySelector('.testimonials-container');
+      const grid = document.querySelector('.testimonials-container .grid');
+      const cards = document.querySelectorAll('.testimonials-container .grid > div');
+      let scrollAmount = 0;
+      const cardWidth = cards[0].offsetWidth + parseInt(window.getComputedStyle(cards[0]).marginRight);
+
+      function autoScroll() {
+        if (scrollAmount >= grid.scrollWidth - container.offsetWidth) {
+          scrollAmount = 0;
+        } else {
+          scrollAmount += cardWidth;
+        }
+        container.scrollTo({
+          left: scrollAmount,
+          behavior: 'smooth'
+        });
+      }
+
+      setInterval(autoScroll, 3000); // Adjust the interval as needed
+    });
+  
+    </script>
+
+    <div class="px-6 md:px-12 lg:px-24">
+    <section
+      id="hero"
+      class="pt-0 pb-20 md:pt-40 md:pb-32 relative overflow-hidden"
+    >
+      <div
+        class="absolute inset-0 bg-gradient-radial from-primary/5 to-transparent -z-10"
+      ></div>
+      <div class="container-custom grid md:grid-cols-2 gap-12 items-center">
+        <div class="animate-fade-in">
+          <span
+            class="text-blue-600 hover:text-blue-700 inline-block px-3 py-1 bg-primary/10 text-primary rounded-full text-sm font-medium mb-6"
+            >Premium Auto Service</span
+          >
+          <h1
+            class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 tracking-tight  max-md:pt-12"
+          >
+            Expert Automotive Solutions
+          </h1>
+          <p class="text-muted-foreground text-lg mb-8 max-w-lg">
+            AutoJanded Car Nation Ltd is a dynamic automotive company
+            specializing in CNG Conversion, vehicle sales, repairs, restoration,
+            consultancy and training. With nearly a decade of experience in the
+            industry, we are committed to delivering innovation, cost effective
+            and eco friendly automotive solutions.
+          </p>
+          <div class="flex items-center gap-4">
+            <!-- Schedule Service Button -->
+            <a href="#contact" class="btn-primary flex-1 flex items-center justify-center bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-all duration-300 shadow-md hover:shadow-lg">
+              Schedule Service
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-arrow-right ml-2"
+              >
+                <path d="M5 12h14"></path>
+                <path d="m12 5 7 7-7 7"></path>
+              </svg>
+            </a>
+          
+            <!-- Our Services Button -->
+            <a href="#services" class="btn-outline flex-1 flex items-center justify-center border border-blue-600 text-blue-600 px-6 py-3 rounded-lg hover:bg-blue-600 hover:text-white transition-all duration-300 shadow-md hover:shadow-lg">
+              Our Services
+            </a>
+          </div>
+        </div>
+        <div class="relative animate-fade-in">
+          <div
+            class="absolute -inset-4 bg-gradient-radial from-primary/20 to-transparent rounded-full blur-2xl -z-10"
+          ></div>
+          <div class="relative bg-gradient-to-br from-white/80 to-white/20 glass rounded-2xl overflow-hidden aspect-video shadow-lg">
+            <img
+              src="./src/ToyotaCamry.jpg"
+              alt="Luxury car service"
+              class="object-cover w-full h-full mix-blend-multiply" <!-- Changed to multiply -->
+            />
+          </div>
+          <div
+            class="absolute -right-4 -bottom-4 glass rounded-xl p-4 shadow-lg animate-float"
+          >
+            <div class="flex items-center gap-3">
+              <div class="bg-primary/20 text-primary rounded-full p-2">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-shield"
+                >
+                  <path
+                    d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"
+                  ></path>
+                </svg>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container-custom mt-20">
+        <div
+          class="glass rounded-xl grid grid-cols-2 md:grid-cols-4 divide-x divide-border"
+        >
+          <div class="p-6 text-center">
+            <p class="text-4xl font-bold text-primary">10+</p>
+            <p class="text-sm text-muted-foreground">Years Experience</p>
+          </div>
+          <div class="p-6 text-center">
+            <p class="text-4xl font-bold text-primary">5k+</p>
+            <p class="text-sm text-muted-foreground">Happy Customers</p>
+          </div>
+          <div class="p-6 text-center">
+            <p class="text-4xl font-bold text-primary">100%</p>
+            <p class="text-sm text-muted-foreground">Quality Parts</p>
+          </div>
+          <div class="p-6 text-center">
+            <p class="text-4xl font-bold text-primary">24/7</p>
+            <p class="text-sm text-muted-foreground">Emergency Service</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="services" class="py-16 md:py-24 relative">
+      <div class="container-custom">
+        <div
+          class="text-center max-w-xl mx-auto mb-16 animate-on-scroll animate-fade-in"
+          style="opacity: 1"
+        >
+          <span
+            class="text-blue-600 hover:text-blue-700 inline-block px-3 py-1 bg-primary/10 text-primary rounded-full text-sm font-medium mb-4"
+            >Our Services</span
+          >
+          <h2 class="text-3xl md:text-4xl font-bold mb-4">
+            Comprehensive Auto Services
+          </h2>
+          <p class="text-muted-foreground">
+            We offer a complete range of services to keep your vehicle in
+            optimal condition, from routine maintenance to complex repairs.
+          </p>
+        </div>
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div class="animate-on-scroll animate-fade-in" style="opacity: 1">
+            <div
+              class="glass glass-hover rounded-xl p-6 hover-lift group"
+              style="animation-delay: 100ms"
+            >
+              <div
+                class="text-blue-600 hover:text-blue-700 h-12 w-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4 text-primary"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-gauge"
+                >
+                  <path d="m12 14 4-4"></path>
+                  <path d="M3.34 19a10 10 0 1 1 17.32 0"></path>
+                </svg>
+              </div>
+              <h3 class="text-xl font-medium mb-2">
+                CNG Conversion &amp; Training
+              </h3>
+              <p class="text-muted-foreground mb-4">
+                Professional CNG conversion services and comprehensive training
+                for vehicle owners and technicians.
+              </p>
+              <a
+                href="#contact"
+                class="text-blue-600 hover:text-blue-700 inline-flex items-center text-primary font-medium group-hover:gap-1.5 gap-1 transition-all duration-300"
+                >Learn more
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-arrow-right transition-transform duration-300 group-hover:translate-x-1"
+                >
+                  <path d="M5 12h14"></path>
+                  <path d="m12 5 7 7-7 7"></path></svg
+              ></a>
+            </div>
+          </div>
+          <div class="animate-on-scroll animate-fade-in" style="opacity: 1">
+            <div
+              class="glass glass-hover rounded-xl p-6 hover-lift group"
+              style="animation-delay: 200ms"
+            >
+              <div
+                class="text-blue-600 hover:text-blue-700 h-12 w-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4 text-primary"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-car"
+                >
+                  <path
+                    d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"
+                  ></path>
+                  <circle cx="7" cy="17" r="2"></circle>
+                  <path d="M9 17h6"></path>
+                  <circle cx="17" cy="17" r="2"></circle>
+                </svg>
+              </div>
+              <h3 class="text-xl font-medium mb-2">
+                Vehicle Sales &amp; Sourcing
+              </h3>
+              <p class="text-muted-foreground mb-4">
+                Find your perfect vehicle with our professional sourcing service
+                and extensive sales network.
+              </p>
+              <a
+                href="#contact"
+                class="text-blue-600 hover:text-blue-700 inline-flex items-center text-primary font-medium group-hover:gap-1.5 gap-1 transition-all duration-300"
+                >Learn more
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-arrow-right transition-transform duration-300 group-hover:translate-x-1"
+                >
+                  <path d="M5 12h14"></path>
+                  <path d="m12 5 7 7-7 7"></path></svg
+              ></a>
+            </div>
+          </div>
+          <div class="animate-on-scroll animate-fade-in" style="opacity: 1">
+            <div
+              class="glass glass-hover rounded-xl p-6 hover-lift group"
+              style="animation-delay: 300ms"
+            >
+              <div
+                class="text-blue-600 hover:text-blue-700 h-12 w-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4 text-primary"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-wrench"
+                >
+                  <path
+                    d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"
+                  ></path>
+                </svg>
+              </div>
+              <h3 class="text-xl font-medium mb-2">
+                Auto Repairs &amp; Maintenance
+              </h3>
+              <p class="text-muted-foreground mb-4">
+                Comprehensive maintenance and repair services to keep your
+                vehicle running at peak performance.
+              </p>
+              <a
+                href="#contact"
+                class="text-blue-600 hover:text-blue-700 inline-flex items-center text-primary font-medium group-hover:gap-1.5 gap-1 transition-all duration-300"
+                >Learn more
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-arrow-right transition-transform duration-300 group-hover:translate-x-1"
+                >
+                  <path d="M5 12h14"></path>
+                  <path d="m12 5 7 7-7 7"></path></svg
+              ></a>
+            </div>
+          </div>
+          <div class="animate-on-scroll animate-fade-in" style="opacity: 1">
+            <div
+              class="glass glass-hover rounded-xl p-6 hover-lift group"
+              style="animation-delay: 400ms"
+            >
+              <div
+                class="text-blue-600 hover:text-blue-700 h-12 w-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4 text-primary"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-hammer"
+                >
+                  <path d="m15 12-8.373 8.373a1 1 0 1 1-3-3L12 9"></path>
+                  <path d="m18 15 4-4"></path>
+                  <path
+                    d="m21.5 11.5-1.914-1.914A2 2 0 0 1 19 8.172V7l-2.26-2.26a6 6 0 0 0-4.202-1.756L9 2.96l.92.82A6.18 6.18 0 0 1 12 8.4V10l2 2h1.172a2 2 0 0 1 1.414.586L18.5 14.5"
+                  ></path>
+                </svg>
+              </div>
+              <h3 class="text-xl font-medium mb-2">
+                Car Restoration &amp; Customization
+              </h3>
+              <p class="text-muted-foreground mb-4">
+                Expert restoration and customization services to bring your
+                dream car to life.
+              </p>
+              <a
+                href="#contact"
+                class="text-blue-600 hover:text-blue-700 inline-flex items-center text-primary font-medium group-hover:gap-1.5 gap-1 transition-all duration-300"
+                >Learn more
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-arrow-right transition-transform duration-300 group-hover:translate-x-1"
+                >
+                  <path d="M5 12h14"></path>
+                  <path d="m12 5 7 7-7 7"></path></svg
+              ></a>
+            </div>
+          </div>
+          <div class="animate-on-scroll animate-fade-in" style="opacity: 1">
+            <div
+              class="glass glass-hover rounded-xl p-6 hover-lift group"
+              style="animation-delay: 500ms"
+            >
+              <div
+                class="text-blue-600 hover:text-blue-700 h-12 w-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4 text-primary"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-settings"
+                >
+                  <path
+                    d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"
+                  ></path>
+                  <circle cx="12" cy="12" r="3"></circle>
+                </svg>
+              </div>
+              <h3 class="text-xl font-medium mb-2">Engineering Consultancy</h3>
+              <p class="text-muted-foreground mb-4">
+                Professional engineering expertise and consultancy for
+                automotive projects and improvements.
+              </p>
+              <a
+                href="#contact"
+                class="text-blue-600 hover:text-blue-700 inline-flex items-center text-primary font-medium group-hover:gap-1.5 gap-1 transition-all duration-300"
+                >Learn more
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-arrow-right transition-transform duration-300 group-hover:translate-x-1"
+                >
+                  <path d="M5 12h14"></path>
+                  <path d="m12 5 7 7-7 7"></path></svg
+              ></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section
+      id="about"
+      class="py-16 md:py-24 bg-secondary relative overflow-hidden"
+    >
+      <div class="container-custom grid md:grid-cols-2 gap-12 items-center">
+        <div
+          class="relative animate-on-scroll animate-fade-in"
+          style="opacity: 1"
+        >
+          <div
+            class="relative bg-white rounded-2xl overflow-hidden shadow-lg aspect-square"
+          >
+            <img
+              src="./src/injectors.jpg"
+              alt="Mechanic working on car"
+              class="object-cover w-full h-full"
+            />
+          </div>
+          
+        </div>
+        <div class="animate-on-scroll animate-fade-in" style="opacity: 1">
+          <span
+            class="text-blue-600 hover:text-blue-700 inline-block px-3 py-1 bg-primary/10 text-primary rounded-full text-sm font-medium mb-6"
+            >Why Choose Us</span
+          >
+          <h2 class="text-3xl md:text-4xl font-bold mb-6">
+            Precision Engineering &amp; Dedicated Service
+          </h2>
+          <p class="text-muted-foreground mb-8">
+            At AutoJanded, we combine technical expertise with personalized
+            service. Our technicians use the latest diagnostic
+            equipment and quality parts to ensure your vehicle performs at its
+            best.
+          </p>
+          <div class="space-y-4 mb-8">
+            <div class="flex gap-3">
+              <div
+                class="text-blue-600 hover:text-blue-700 bg-primary/10 text-primary rounded-full p-1 h-6 w-6 flex items-center justify-center flex-shrink-0 mt-0.5"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-circle-check"
+                >
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <path d="m9 12 2 2 4-4"></path>
+                </svg>
+              </div>
+              <div>
+                <p class="font-medium">Certified Technicians</p>
+                <p class="text-sm text-muted-foreground">
+                  All our mechanics are certified with extensive training.
+                </p>
+              </div>
+            </div>
+            <div class="flex gap-3">
+              <div
+                class="text-blue-600 hover:text-blue-700 bg-primary/10 text-primary rounded-full p-1 h-6 w-6 flex items-center justify-center flex-shrink-0 mt-0.5"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-circle-check"
+                >
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <path d="m9 12 2 2 4-4"></path>
+                </svg>
+              </div>
+              <div>
+                <p class="font-medium">Advanced Diagnostics</p>
+                <p class="text-sm text-muted-foreground">
+                  State-of-the-art equipment to accurately diagnose issues.
+                </p>
+              </div>
+            </div>
+            <div class="flex gap-3">
+              <div
+                class="text-blue-600 hover:text-blue-700 bg-primary/10 text-primary rounded-full p-1 h-6 w-6 flex items-center justify-center flex-shrink-0 mt-0.5"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-circle-check"
+                >
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <path d="m9 12 2 2 4-4"></path>
+                </svg>
+              </div>
+              <div>
+                <p class="font-medium">Quality Parts</p>
+                <p class="text-sm text-muted-foreground">
+                  We use only OEM or high-quality aftermarket parts.
+                </p>
+              </div>
+            </div>
+            <div class="flex gap-3">
+              <div
+                class="text-blue-600 hover:text-blue-700 bg-primary/10 text-primary rounded-full p-1 h-6 w-6 flex items-center justify-center flex-shrink-0 mt-0.5"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-circle-check"
+                >
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <path d="m9 12 2 2 4-4"></path>
+                </svg>
+              </div>
+              <div>
+                <p class="font-medium">Transparent Pricing</p>
+                <p class="text-sm text-muted-foreground">
+                  No hidden fees or unexpected charges.
+                </p>
+              </div>
+            </div>
+          </div>
+          <a href="#contact" class="btn-primary"
+            >Learn More About Us
+            </a>
+        </div>
+      </div>
+    </section>
+    <section id="testimonials" class="py-16 md:py-24 relative overflow-hidden">
+      <div
+        class="absolute inset-0 bg-gradient-radial from-primary/5 to-transparent -z-10"
+      ></div>
+      <div class="container-custom">
+        <div
+          class="text-center max-w-xl mx-auto mb-16 animate-on-scroll animate-fade-in"
+          style="opacity: 1"
+        >
+          <span
+            class="inline-block px-3 py-1 bg-primary/10 text-primary rounded-full text-sm font-medium mb-4"
+            >Testimonials</span
+          >
+          <h2 class="text-3xl md:text-4xl font-bold mb-4">
+            What Our Customers Say
+          </h2>
+          <p class="text-muted-foreground">
+            Don't just take our word for it. Hear from customers who've
+            experienced our exceptional service.
+          </p>
+        </div>
+        <div class="testimonials-container">
+          <div class="grid md:grid-cols-3 gap-6 inline-block whitespace-normal">
+            <div class="animate-on-scroll animate-fade-in" style="opacity: 1">
+              <!-- Testimonial 1 -->
+              <div
+              class="glass rounded-xl p-6 h-full flex flex-col animate-fade-in"
+              style="animation-delay: 100ms"
+            >
+              <div class="text-blue-600 hover:text-blue-700 flex mb-4">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-star fill-current text-primary"
+                >
+                  <path
+                    d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"
+                  ></path></svg
+                ><svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-star fill-current text-primary"
+                >
+                  <path
+                    d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"
+                  ></path></svg
+                ><svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-star fill-current text-primary"
+                >
+                  <path
+                    d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"
+                  ></path></svg
+                ><svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-star fill-current text-primary"
+                >
+                  <path
+                    d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"
+                  ></path></svg
+                ><svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-star fill-current text-primary"
+                >
+                  <path
+                    d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"
+                  ></path>
+                </svg>
+              </div>
+              <p class="text-foreground/90 italic mb-6 flex-grow">
+                Top notch CNG Conversion Service! AutoJanded did an excellent
+                job converting my car to CNG. The process was smooth, and their
+                team was very knowledgeable. Now, I save a lot on fuel costs.
+              </p>
+              <div>
+                <p class="font-medium">Abdulaziz A. Ta'ariq</p>
+                <p class="text-sm text-muted-foreground">ABUJA</p>
+              </div>
+            </div>
+            </div>
+            <div class="animate-on-scroll animate-fade-in" style="opacity: 1">
+              <!-- Testimonial 2 -->
+              <div
+              class="glass rounded-xl p-6 h-full flex flex-col animate-fade-in"
+              style="animation-delay: 200ms"
+            >
+              <div class="text-blue-600 hover:text-blue-700 flex mb-4">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-star fill-current text-primary"
+                >
+                  <path
+                    d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"
+                  ></path></svg
+                ><svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-star fill-current text-primary"
+                >
+                  <path
+                    d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"
+                  ></path></svg
+                ><svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-star fill-current text-primary"
+                >
+                  <path
+                    d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"
+                  ></path></svg
+                ><svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-star fill-current text-primary"
+                >
+                  <path
+                    d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"
+                  ></path></svg
+                ><svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-star fill-current text-primary"
+                >
+                  <path
+                    d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"
+                  ></path>
+                </svg>
+              </div>
+              <p class="text-foreground/90 italic mb-6 flex-grow">
+                Reliable and Trustworthy Auto Repairs! I've taken my car to many
+                workshops, but AutoJanded stands out. Their attention to detail
+                and professionalism in repairs are unmatched.
+              </p>
+              <div>
+                <p class="font-medium">Ibrahim Ashraff</p>
+                <p class="text-sm text-muted-foreground">Abuja</p>
+              </div>
+            </div>
+            </div>
+            <div class="animate-on-scroll animate-fade-in" style="opacity: 1">
+              <!-- Testimonial 3 -->
+              <div
+              class="glass rounded-xl p-6 h-full flex flex-col animate-fade-in"
+              style="animation-delay: 300ms"
+            >
+              <div class="text-blue-600 hover:text-blue-700 flex mb-4">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-star fill-current text-primary"
+                >
+                  <path
+                    d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"
+                  ></path></svg
+                ><svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-star fill-current text-primary"
+                >
+                  <path
+                    d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"
+                  ></path></svg
+                ><svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-star fill-current text-primary"
+                >
+                  <path
+                    d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"
+                  ></path></svg
+                ><svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-star fill-current text-primary"
+                >
+                  <path
+                    d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"
+                  ></path></svg
+                ><svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-star fill-current text-primary"
+                >
+                  <path
+                    d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"
+                  ></path>
+                </svg>
+              </div>
+              <p class="text-foreground/90 italic mb-6 flex-grow">
+                A Game changer in the Auto Industry. Their expertise in car
+                restoration is impressive. They brought my old car back to life,
+                and now it looks nice and runs like new.
+              </p>
+              <div>
+                <p class="font-medium">Fatima M.</p>
+                <p class="text-sm text-muted-foreground">Kano</p>
+              </div>
+            </div>
+            </div>
+            <div class="animate-on-scroll animate-fade-in" style="opacity: 1">
+              <!-- Testimonial 4 -->
+              <div
+              class="glass rounded-xl p-6 h-full flex flex-col animate-fade-in"
+              style="animation-delay: 400ms"
+            >
+              <div class="text-blue-600 hover:text-blue-700 flex mb-4">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-star fill-current text-primary"
+                >
+                  <path
+                    d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"
+                  ></path></svg
+                ><svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-star fill-current text-primary"
+                >
+                  <path
+                    d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"
+                  ></path></svg
+                ><svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-star fill-current text-primary"
+                >
+                  <path
+                    d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"
+                  ></path></svg
+                ><svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-star fill-current text-primary"
+                >
+                  <path
+                    d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"
+                  ></path></svg
+                ><svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-star fill-current text-primary"
+                >
+                  <path
+                    d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"
+                  ></path>
+                </svg>
+              </div>
+              <p class="text-foreground/90 italic mb-6 flex-grow">
+                Exceptional Customer service! From Consultation to service
+                delivery, AutoJanded ensured I was satisfied. They explained
+                everything in detail and provided top quality work.
+              </p>
+              <div>
+                <p class="font-medium">Daniel E.</p>
+                <p class="text-sm text-muted-foreground">Lagos</p>
+              </div>
+            </div>
+            </div>
+          </div>
+        </div>
+        
+      
+      </div>
+    </section>
+    <section id="contact" class="py-16 md:py-24 relative overflow-hidden">
+      <div
+        class="absolute inset-0 bg-gradient-radial from-primary/5 to-transparent -z-10"
+      ></div>
+      <div class="container-custom">
+        <div class="mx-auto max-w-3xl text-center mb-12 animate-fade-in">
+          <h2 class="text-3xl md:text-4xl font-bold mb-4">
+            Ready to Experience Premium Car Service?
+          </h2>
+          <p class="text-muted-foreground text-lg max-w-2xl mx-auto">
+            Schedule your appointment today and join thousands of satisfied
+            customers who trust AutoJanded for all their automotive needs.
+          </p>
+        </div>
+        <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+          <div class="glass p-8 rounded-xl animate-fade-in-left">
+            <h3 class="text-2xl font-medium mb-6">Book an Appointment</h3>
+            <form action="/booking" method="POST" class="space-y-4">
+              <div>
+                <label for="name" class="block text-sm font-medium mb-1">Your Name</label>
+                <input
+                  name="client_name"
+                  type="text"
+                  id="name"
+                  class="w-full px-4 py-2 border border-border bg-background/50 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-200"
+                  placeholder="John Doe"
+                  value=""
+                />
+              </div>
+              <div>
+                <label for="email" class="block text-sm font-medium mb-1">Email Address</label>
+                <input
+                name="client_email_address"
+                  type="email"
+                  id="email"
+                  class="w-full px-4 py-2 border border-border bg-background/50 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-200"
+                  placeholder="john@example.com"
+                  value=""
+                />
+              </div>
+              <div>
+                <label for="phone" class="block text-sm font-medium mb-1">Phone Number</label>
+                <input
+                name="client_phone"
+                  type="tel"
+                  id="phone"
+                  class="w-full px-4 py-2 border border-border bg-background/50 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-200"
+                  placeholder="123-456-7890"
+                  value=""
+                />
+              </div>
+              <div>
+                <label for="service" class="block text-sm font-medium mb-1">Service Required</label>
+                <select
+                name="service"
+                  id="service"
+                  class="w-full px-4 py-2 border border-border bg-background/50 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-200"
+                >
+                  <option value="">Select a service</option>
+                  <option value="oil-change">Oil Change</option>
+                  <option value="brake-service">Brake Service</option>
+                  <option value="engine-repair">Engine Repair</option>
+                  <option value="diagnostic">Vehicle Diagnostic</option>
+                  <option value="maintenance">Maintenance Service</option>
+                  <option value="CNG">CNG Conversion</option>
+
+                </select>
+              </div>
+              <div>
+                <label for="message" class="block text-sm font-medium mb-1">Additional Details</label>
+                <textarea
+                name="message"
+                  id="message"
+                  rows="4"
+                  class="w-full px-4 py-2 border border-border bg-background/50 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-200"
+                  placeholder="Tell us more about your vehicle or service needs..."
+                ></textarea>
+              </div>
+              <button type="submit" class="btn-primary mt-4">
+                Schedule Now
+                
+              </button>
+            </form>
+          </div>
+          <div class="glass p-8 rounded-xl flex flex-col animate-fade-in-right">
+            <h3 class="text-2xl font-medium mb-6">Visit Our Shop</h3>
+            <div class="flex-grow space-y-8">
+              <div>
+                <h4 class="text-lg font-medium mb-2 flex items-center gap-2">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="18"
+                    height="18"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="lucide lucide-clock text-primary"
+                  >
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polyline points="12 6 12 12 16 14"></polyline>
+                  </svg>
+                  Working Hours
+                </h4>
+                <table class="w-full text-sm">
+                  <tbody>
+                    <tr>
+                      <td class="py-1 font-medium">Monday - Friday</td>
+                      <td class="py-1 text-right">8:00 AM - 6:00 PM</td>
+                    </tr>
+                    <tr>
+                      <td class="py-1 font-medium">Saturday</td>
+                      <td class="py-1 text-right">9:00 AM - 5:00 PM</td>
+                    </tr>
+                    <tr>
+                      <td class="py-1 font-medium">Sunday</td>
+                      <td class="py-1 text-right">Closed</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div>
+                <h4 class="text-lg font-medium mb-2 flex items-center gap-2">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="18"
+                    height="18"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="lucide lucide-calendar text-primary"
+                  >
+                    <path d="M8 2v4"></path>
+                    <path d="M16 2v4"></path>
+                    <rect width="18" height="18" x="3" y="4" rx="2"></rect>
+                    <path d="M3 10h18"></path>
+                  </svg>
+                  Contact Information
+                </h4>
+                <div class="space-y-2">
+                  <p class="text-sm">
+                    <span class="font-medium">Phone:</span> 08108061205
+                  </p>
+                  <p class="text-sm">
+                    <span class="font-medium">Email:</span>
+                    odegemustapha1@gmail.com
+                  </p>
+                  <p class="text-sm">
+                    <span class="font-medium">Address:</span> Gongola Park, Mabushi Abuja
+                    <br><span class="font-medium">Address:</span> CNG conversion/Workshop @ opposite field base,Old Coca-cola Kaduna road, Sulaja Niger State 
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="mt-auto pt-8">
+              <a href="tel:+1234567890" class="btn-primary"
+                >Call Us Now</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    </div>
+    <footer class="bg-gray-900 text-gray-300 py-6 text-center mt-12">
+      <p>&copy; 2025 AutoJanded Car Nation. All rights reserved.</p>
+    </footer>
+
+  </body>
+</html>

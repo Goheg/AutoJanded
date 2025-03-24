@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AutoJanded Car Nation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Swiper CSS -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/swiper/swiper-bundle.min.css"
+    />
+    <style>
+      #mobile-menu {
+        transition: opacity 0.3s ease, transform 0.3s ease;
+        transform: translateY(-10px);
+        opacity: 0;
+      }
+
+      #mobile-menu.active {
+        transform: translateY(0);
+        opacity: 1;
+      }
+
+      .btn-primary {
+        background-color: #007BFF;
+        color: white;
+        padding: 12px 24px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        border-radius: 25px;
+        font-size: 16px;
+        font-weight: 500;
+        border: none;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+        width: 100%;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      .btn-primary:hover {
+        background-color: #0056b3;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+      }
+
+      .btn-primary:active {
+        background-color: #004080;
+        transform: translateY(0);
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      /* Background Carousel Styles */
+      .bg-carousel-container {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        min-height: 500px;
+        border-radius: 12px;
+        overflow: hidden;
+      }
+      
+      .bg-carousel-slide {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-size: cover;
+        background-position: center;
+        transition: opacity 1s ease-in-out;
+        opacity: 0;
+      }
+      
+      .bg-carousel-slide.active {
+        opacity: 1;
+      }
+      
+      .bg-carousel-content {
+        position: relative;
+        z-index: 2;
+        padding: 2rem;
+        color: white;
+        background: rgba(0, 0, 0, 0.5);
+        border-radius: 12px;
+      }
+      
+      /* Swiper Custom Styles */
+      .swiper-container {
+        width: 100%;
+        height: 100%;
+      }
+
+      .swiper-slide {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .swiper-slide img {
+        width: 100%;
+        height: auto;
+        border-radius: 12px;
+        object-fit: cover;
+      }
+
+      /* Hide Navigation Arrows */
+      .swiper-button-next,
+      .swiper-button-prev {
+        display: none;
+      }
+    </style>
+  </head>
+  <body class="bg-gray-100 font-sans">
+    <!-- Navigation Bar -->
+    <nav class="fixed top-0 left-0 right-0 z-50 py-4 bg-white shadow-md transition-all duration-300">
+      <div class="container mx-auto flex items-center justify-between px-6">
+        <!-- Logo and Branding -->
+        <a href="/" class="flex items-center">
+          <img
+            src="src/logo.jpg"
+            alt="AutoJanded Car Nation Logo"
+            class="h-12 mr-3"
+          />
+          <div class="hidden sm:block">
+            <h2 class="text-xl font-bold tracking-tight leading-tight">
+              <span class="text-blue-600">AUTO</span
+              ><span class="text-black">JANDED</span>
+            </h2>
+            <span class="text-gray-500 text-sm tracking-widest"
+              >CAR NATION</span
+            >
+          </div>
+        </a>
+    
+        <!-- Desktop Navigation -->
+        <ul class="hidden md:flex gap-6 text-gray-700">
+          <!-- Navigation Links -->
+        </ul>
+    
+        <!-- Phone Number (Desktop) -->
+        <a
+          href="tel:08108061205"
+          class="hidden md:flex items-center gap-2 text-blue-600 font-medium"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="w-5 h-5"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path
+              d="M22 16.92v3a2 2 0 0 1-2.18 2c-5.5-1.5-10-6-11.5-11.5a2 2 0 0 1 2-2.18h3a2 2 0 0 1 2 1.72c.23 1 .5 2.1.7 2.81a2 2 0 0 1-.45 2.11L9 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.71.2 1.81.47 2.81.7a2 2 0 0 1 1.72 2z"
+            />
+          </svg>
+          <span>08108061205</span>
+        </a>
+    
+        <!-- Mobile Hamburger Icon -->
+        <button id="mobile-menu-button" class="md:hidden text-gray-700 focus:outline-none">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="w-6 h-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16m-7 6h7"
+            />
+          </svg>
+        </button>
+      </div>
+    
+      <!-- Mobile Navigation (Hidden by Default) -->
+      <div id="mobile-menu" class="md:hidden hidden bg-white shadow-lg">
+        <ul class="flex flex-col gap-4 p-6 text-gray-700">
+          <li><a href="/" class="hover:text-blue-600">Home</a></li>
+          <li>
+            <a
+              href="tel:08108061205"
+              class="flex items-center gap-2 text-blue-600 font-medium"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="w-5 h-5"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path
+                  d="M22 16.92v3a2 2 0 0 1-2.18 2c-5.5-1.5-10-6-11.5-11.5a2 2 0 0 1 2-2.18h3a2 2 0 0 1 2 1.72c.23 1 .5 2.1.7 2.81a2 2 0 0 1-.45 2.11L9 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.71.2 1.81.47 2.81.7a2 2 0 0 1 1.72 2z"
+                />
+              </svg>
+              <span>08108061205</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="px-6 md:px-12 lg:px-24">
+      <section
+        id="hero"
+        class="pt-0 pb-20 md:pt-40 md:pb-32 relative overflow-hidden"
+      >
+        <div
+          class="absolute inset-0 bg-gradient-radial from-primary/5 to-transparent -z-10"
+        ></div>
+        <div class="container-custom grid md:grid-cols-2 gap-12 items-start">
+          <!-- Left Column: Text Content with Background Carousel -->
+          <div class="animate-fade-in bg-carousel-container">
+            <!-- Background Carousel Slides -->
+            <div class="bg-carousel-slide active" style="background-image: url('./src/ToyotaSUV.jpg');"></div>
+            <div class="bg-carousel-slide" style="background-image: url('./src/CNG\ image.jpg');"></div>
+            <div class="bg-carousel-slide" style="background-image: url('./src/Injectors.jpg');"></div>
+            <div class="bg-carousel-slide" style="background-image: url('./src/RedToyota.jpg');"></div>
+            
+            <!-- Content Overlay -->
+            <div class="bg-carousel-content">
+              <span
+                class="text-white hover:text-blue-300 inline-block px-3 py-1 bg-blue-600/30 text-white rounded-full text-sm font-medium mb-6"
+                >Premium Auto Service</span
+              >
+              <h1
+                class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 tracking-tight max-md:pt-12 text-white"
+              >
+                Vehicle Sales & Sourcing
+              </h1>
+              <p class="text-gray-200 text-lg mb-8 max-w-lg">
+                Find your dream car with our expert sourcing service. 
+                We specialize in locating and delivering high-quality vehicles 
+                that match your exact specifications and budget requirements.
+              </p>
+            </div>
+          </div>
+
+          <!-- Right Column: Form -->
+          <div class="relative animate-fade-in">
+            <div
+              class="absolute -inset-4 bg-gradient-radial from-primary/20 to-transparent rounded-full blur-2xl -z-10"
+            ></div>
+            <div class="relative bg-gradient-to-br from-white/80 to-white/20 glass rounded-2xl overflow-hidden shadow-lg p-8">
+              <h3 class="text-2xl font-medium mb-6">Contact Us</h3>
+              <form action="/sales" method="POST" class="space-y-4">
+                <!-- Form Fields -->
+                <div>
+                  <label for="name" class="block text-sm font-medium mb-1">Full Name</label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600"
+                    placeholder="John Doe"
+                    required
+                  />
+                </div>
+                <div>
+                  <label for="email" class="block text-sm font-medium mb-1">Email Address</label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600"
+                    placeholder="john@example.com"
+                    required
+                  />
+                </div>
+                <div>
+                  <label for="phone" class="block text-sm font-medium mb-1">Phone Number</label>
+                  <input
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600"
+                    placeholder="123-456-7890"
+                    required
+                  />
+                </div>
+                <div>
+                  <label for="vehicle-name" class="block text-sm font-medium mb-1">Vehicle Name</label>
+                  <input
+                    type="text"
+                    id="vehicle-name"
+                    name="vehicleName"
+                    class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600"
+                    placeholder="Toyota Camry"
+                    required
+                  />
+                </div>
+                <div>
+                  <label for="year" class="block text-sm font-medium mb-1">Year of Manufacture</label>
+                  <input
+                    type="number"
+                    id="year"
+                    name="year"
+                    class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600"
+                    placeholder="2015"
+                    required
+                  />
+                </div>
+                <div>
+                  <label for="service" class="block text-sm font-medium mb-1">Service Required</label>
+                  <select
+                    id="service"
+                    name="service"
+                    class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600"
+                    required
+                  >
+                    <option value="Pre-purchased Inspection">Pre-purchased Inspection(PPI)</option>
+                    <option value="Pre-delivery Inspection">Pre-delivery Inspection(PDI)</option>
+                    <option value="Car Fleet Supply">Car Fleet Supply</option>
+                    <option value="Accessories & Emergency">Accessories & Emergency</option>
+                  </select>
+                </div>
+                
+                <div>
+                  <label for="address" class="block text-sm font-medium mb-1">Address</label>
+                  <input
+                    type="text"
+                    id="address"
+                    name="address"
+                    class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600"
+                    placeholder="123 Main St, Abuja"
+                    required
+                  />
+                </div>
+                <div>
+                  <label for="budget" class="block text-sm font-medium mb-1">What is your budget for the vehicle?</label>
+                  <input
+                    type="number"
+                    id="budget"
+                    name="budget"
+                    class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600"
+                    placeholder="₦10 000 000"
+                    required
+                  />
+                </div>
+                <div>
+                  <label for="upfront" class="block text-sm font-medium mb-1">How much do you have available for a down payment?</label>
+                  <input
+                    type="number"
+                    id="upfront"
+                    name="upfront"
+                    class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600"
+                    placeholder="₦10 000 000"
+                    required
+                  />
+                </div>
+                
+                <button type="submit" class="btn-primary mt-4">
+                  Submit
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-300 py-6 text-center mt-12">
+      <p>&copy; 2025 AutoJanded Car Nation. All rights reserved.</p>
+    </footer>
+
+    <!-- Swiper JS -->
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script>
+      // Background Carousel Script
+      document.addEventListener('DOMContentLoaded', function() {
+        const slides = document.querySelectorAll('.bg-carousel-slide');
+        let currentSlide = 0;
+        
+        function showSlide(n) {
+          slides.forEach(slide => slide.classList.remove('active'));
+          currentSlide = (n + slides.length) % slides.length;
+          slides[currentSlide].classList.add('active');
+        }
+        
+        function nextSlide() {
+          showSlide(currentSlide + 1);
+        }
+        
+        // Change slide every 5 seconds
+        setInterval(nextSlide, 5000);
+        
+        // Initialize Swiper for other carousels if needed
+        const swiper = new Swiper('.swiper-container', {
+          loop: true,
+          autoplay: {
+            delay: 3000,
+            disableOnInteraction: false,
+          },
+          pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+          },
+          navigation: false,
+        });
+      });
+
+      // Mobile Menu Script
+      const mobileMenuButton = document.getElementById('mobile-menu-button');
+      const mobileMenu = document.getElementById('mobile-menu');
+
+      mobileMenuButton.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+        mobileMenu.classList.toggle('active');
+      });
+    </script>
+  </body>
+</html>
